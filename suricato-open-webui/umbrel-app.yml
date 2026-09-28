@@ -1,0 +1,55 @@
+manifestVersion: 1
+id: suricato-open-webui
+storage:
+  dataRoot: data
+name: Open WebUI
+tagline: Chat with Ollama models like DeepSeek-R1 and LLama, or use an OpenAI API key
+icon: https://getumbrel.github.io/umbrel-apps-gallery/open-webui/icon.svg
+category: ai
+version: "0.11.4"
+port: 2876
+description: >-
+  Open WebUI lets you chat with advanced AI models running locally on your own device or connect to online models using an API key.
+
+
+  **Getting Started with Local AI Models:**
+
+
+  🦙 Install Ollama: Start by installing the Ollama app from the Umbrel App Store. Ollama enables you to download and run large language models like Llama 3 and DeepSeek-R1 directly on your device.
+
+
+  ⬇️ Download a Model: In the Open WebUI app, type the name of the model you want in the search bar and click "Pull from Ollama.com." A full list of models is available at https://ollama.com/.
+
+
+  🤖 Example - Running DeepSeek-R1 1.5B: To use the DeepSeek-R1 model with 1.5 billion parameters, type deepseek-r1:1.5b in the search bar and start the download. Once it's ready, you can chat with the model directly in Open WebUI.
+
+
+  ⚠️ Warning: Before running a model, make sure your device has enough free RAM to support it. Attempting to run a model that exceeds your available memory could cause your device to crash or become unresponsive. Always check the model requirements before downloading or starting it.
+developer: Open WebUI
+website: https://openwebui.com/
+submitter: al-lac
+submission: https://github.com/getumbrel/umbrel-apps/pull/1977
+repo: https://github.com/open-webui/open-webui
+support: https://github.com/open-webui/open-webui/issues
+gallery:
+  - https://getumbrel.github.io/umbrel-apps-gallery/open-webui/1.jpg
+  - https://getumbrel.github.io/umbrel-apps-gallery/open-webui/2.jpg
+  - https://getumbrel.github.io/umbrel-apps-gallery/open-webui/3.jpg
+defaultUsername: ""
+defaultPassword: ""
+dependencies:
+  - ollama
+releaseNotes: >-
+  Open WebUI 0.11.4 includes interface, notes, model-management, terminal, and web-search improvements. Back up your Open WebUI data before updating.
+
+
+  Key highlights in this release:
+    - Adds terminal-backed skills, terminal instructions, command tabs, folder uploads, file comparison, and reusable skill creation from chats
+    - Adds model background images, localized suggested prompts, interface wording overrides, per-language names/descriptions, admin model-list filters, and settings search by name
+    - Improves Notes with a formatting switch, a quick delete shortcut, and fixes for note title/attachment saves when leaving a note
+    - Reduces the standard container image size and adds a much smaller slim image upstream
+    - Improves web/search tooling with Staan and Exa options, faster media page reads, better SearchApi error handling, and cleaner web-result citations
+    - Fixes home-page chat draft persistence, failed settings feedback, stale-tab reloads after updates, admin user/model-default dialogs, knowledge folder deletion, MCP tool pagination, and several sharing/access-control edge cases
+
+  Full release notes are available at https://github.com/open-webui/open-webui/releases/tag/v0.11.4
+path: ""
