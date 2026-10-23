@@ -4,7 +4,7 @@ storage:
   dataRoot: data
 category: ai
 name: LiteLLM
-icon: https://raw.githubusercontent.com/BerriAI/litellm/v1.106.2/litellm/proxy/logo.png
+icon: https://cdn.prod.website-files.com/69eb241da3f923869c226875/6abe9abde1fdee789cd2518a_litellm-monogram-white.png
 version: "1.106.2"
 tagline: One OpenAI-compatible API for 100+ LLM providers
 description: >-
