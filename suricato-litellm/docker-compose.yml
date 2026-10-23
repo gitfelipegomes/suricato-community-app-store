@@ -1,0 +1,61 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: suricato-litellm_litellm_1
+      APP_PORT: 4000
+      # Keep Umbrel auth for the UI and management API. Only the inference
+      # data plane is public; LiteLLM still requires a master or virtual key.
+      PROXY_AUTH_WHITELIST: "/v1/*,/anthropic/*,/openai/*,/openai_passthrough/*,/azure/*,/azure_ai/*,/bedrock/*,/vertex_ai/*,/vertex-ai/*,/gemini/*,/cohere/*,/mistral/*,/vllm/*,/mcp,/mcp/*,/claude_code_gateway/*,/claude-code/*"
+
+  litellm:
+    image: ghcr.io/berriai/litellm-non_root:v1.106.2@sha256:07fabea33dfc2b127e865c03112dfc76936334b29028ec05cdd355af2385dc04
+    restart: on-failure
+    stop_grace_period: 1m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command:
+      - "--config"
+      - "/app/config.yaml"
+      - "--port"
+      - "4000"
+    volumes:
+      - ${APP_DATA_DIR}/config.yaml:/app/config.yaml:ro
+    environment:
+      DATABASE_URL: "postgresql://litellm:${APP_SURICATO_LITELLM_POSTGRES_PASSWORD}@postgres:5432/litellm"
+      LITELLM_MASTER_KEY: "${APP_SURICATO_LITELLM_MASTER_KEY}"
+      LITELLM_SALT_KEY: "${APP_SURICATO_LITELLM_SALT_KEY}"
+      STORE_MODEL_IN_DB: "True"
+      UI_USERNAME: "admin"
+      UI_PASSWORD: "${APP_PASSWORD}"
+      NO_DOCS: "True"
+      NO_REDOC: "True"
+      NO_OPENAPI: "True"
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:4000/health/liveliness')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  postgres:
+    image: postgres:17.11-alpine@sha256:eee6c6e1b0894fa4fe0075eb054af9fd1cf39a35321c2d4110626cfe506411fb
+    restart: on-failure
+    stop_grace_period: 1m
+    environment:
+      POSTGRES_DB: "litellm"
+      POSTGRES_USER: "litellm"
+      POSTGRES_PASSWORD: "${APP_SURICATO_LITELLM_POSTGRES_PASSWORD}"
+    volumes:
+      - ${APP_DATA_DIR}/data/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U litellm -d litellm"]
+      interval: 5s
+      timeout: 5s
+      retries: 10

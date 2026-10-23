@@ -1,0 +1,40 @@
+manifestVersion: 1
+id: suricato-litellm
+storage:
+  dataRoot: data
+category: ai
+name: LiteLLM
+icon: https://raw.githubusercontent.com/BerriAI/litellm/v1.106.2/litellm/proxy/logo.png
+version: "1.106.2"
+tagline: One OpenAI-compatible API for 100+ LLM providers
+description: >-
+  LiteLLM is a self-hosted LLM gateway. Configure provider credentials and models once, then use a single OpenAI-compatible endpoint and scoped virtual keys across apps, agents, and scripts.
+
+
+  **Sign in:** Open the app and log in with username `admin` and the app password shown by umbrelOS. Add providers and models under Models + Endpoints, then create virtual keys under Virtual Keys.
+
+
+  **Connect a client:** Point any OpenAI-compatible client at `http://<your-umbrel-host>:2877/v1` (or `https://` if using HTTPS) and use a virtual key as the API key. Native Anthropic, Gemini, Bedrock, Vertex AI, Azure, OpenAI, Cohere, Mistral, vLLM, and MCP passthrough routes are also available.
+
+
+  **Security:** Provider credentials are stored in a local PostgreSQL database and encrypted with an app-specific salt key. Use virtual keys for clients instead of the master key, and keep your Umbrel device and seed backups safe.
+releaseNotes: ""
+
+developer: BerriAI
+website: https://www.litellm.ai
+dependencies: []
+repo: https://github.com/BerriAI/litellm
+support: https://github.com/BerriAI/litellm/issues
+
+port: 2877
+gallery:
+  - https://docs.litellm.ai/assets/ideal-img/ui_quickstart_login.b9a1c06.640.png
+  - https://docs.litellm.ai/assets/ideal-img/ui_quickstart_models_list.1a5ab90.640.png
+  - https://docs.litellm.ai/assets/ideal-img/litellm_ui_create_key.528a8da.640.png
+path: "/ui"
+
+defaultUsername: "admin"
+deterministicPassword: true
+
+submitter: gitfelipegomes
+submission: https://github.com/gitfelipegomes/suricato-community-app-store
