@@ -5,7 +5,7 @@ storage:
 category: ai
 name: LiteLLM
 icon: https://cdn.prod.website-files.com/69eb241da3f923869c226875/6abe9abde1fdee789cd2518a_litellm-monogram-white.png
-version: "1.106.2"
+version: "1.106.4"
 tagline: One OpenAI-compatible API for 100+ LLM providers
 description: >-
   LiteLLM is a self-hosted LLM gateway. Configure provider credentials and models once, then use a single OpenAI-compatible endpoint and scoped virtual keys across apps, agents, and scripts.
@@ -18,7 +18,8 @@ description: >-
 
 
   **Security:** Provider credentials are stored in a local PostgreSQL database and encrypted with an app-specific salt key. Use virtual keys for clients instead of the master key, and keep your Umbrel device and seed backups safe.
-releaseNotes: ""
+releaseNotes: >-
+  LiteLLM 1.106.4 is a maintenance release. It fixes the proxy occasionally failing to start with an ImportError when the remote model cost map is unreachable, and resolves image scan findings (brotli 1.2.0, unused lockfile packages, and an outdated root CA). No configuration changes or action is required to upgrade.
 
 developer: BerriAI
 website: https://www.litellm.ai
